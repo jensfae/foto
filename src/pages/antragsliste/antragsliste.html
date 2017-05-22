@@ -1,0 +1,39 @@
+<!--
+  Generated template for the Antragsliste page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Passanträge</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>Anträge</ion-list-header>
+    <ion-item *ngFor="let antrag of antragsList " (click)="goToEventDetail(antrag.id)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2>
+            <img class="img-responsive" src="{{ antrag.passAntragsURL }}" />
+          </ion-col>
+          <ion-col col-10>
+            <h2>{{antrag.name}} , {{antrag.vorname}}</h2>
+            <p displayFormat="MM/DD/YYYY">{{antrag.gebDatum}}</p>
+
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>
