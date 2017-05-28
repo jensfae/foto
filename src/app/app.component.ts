@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -6,9 +6,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { Antragsliste } from '../pages/antragsliste/antragsliste';
-import { Antragsverwaltung} from '../pages/antragsverwaltung/antragsverwaltung';
-import firebase from 'firebase';
+import { Antragsverwaltung } from '../pages/antragsverwaltung/antragsverwaltung';
+import { AntragDetails } from '../pages/antrag-details/antrag-details';
 
+//import { AngularFire } from 'angularfire2';
+import firebase from 'firebase';
 @Component({
   templateUrl: 'app.html'
 })
@@ -17,11 +19,12 @@ export class MyApp {
 
   rootPage: any = Antragsliste;
 
+
   pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
-
+    
+    
     firebase.initializeApp({
       apikey: "AIzaSyDk3J3uw-xqjkiGhhUpnWJBAQM6qaY9vdg",
       authDomain: "esv-trainer.firebaseapp.com",
@@ -32,13 +35,30 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-     { title: 'Anträge', component: Antragsverwaltung },
+      { title: 'Anträge', component: Antragsverwaltung },
       { title: 'Pass-Anträge', component: Antragsliste },
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'List', component: ListPage },
+      { title: 'Antrag-Detail', component:  AntragDetails }
 
     ];
+    this.initializeApp();
 
+/*
+    //Login********************
+    this.zone = new NgZone({});
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      this.zone.run(() => {
+        if (!user) {
+          this.rootPage = 'login';
+          unsubscribe();
+        } else {
+          this.rootPage = HomePage;
+          unsubscribe();
+        }
+      });
+    });
+*/
   }
 
   initializeApp() {

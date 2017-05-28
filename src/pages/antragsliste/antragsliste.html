@@ -15,16 +15,16 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header>Anträge</ion-list-header>
-    <ion-item *ngFor="let antrag of antragsList " (click)="goToEventDetail(antrag.id)">
+   
+    <ion-card *ngFor="let antrag of antragsList | async " (click)="goToEventDetail(antrag)">
       <ion-grid>
         <ion-row>
           <ion-col col-2>
-            <img class="img-responsive" src="{{ antrag.passAntragsURL }}" />
+            <img class="img-responsive" src="{{ antrag.passfotoURL }}" />
           </ion-col>
           <ion-col col-10>
             <h2>{{antrag.name}} , {{antrag.vorname}}</h2>
-            <p displayFormat="MM/DD/YYYY">{{antrag.gebDatum}}</p>
+            <p displayFormat="MM/DD/YYYY">{{antrag.gebdatum}}</p>
 
 
           </ion-col>
@@ -33,7 +33,21 @@
 
 
 
-    </ion-item>
+    </ion-card>
   </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    
+    <ion-buttons class='whatevercenter' >
+     
+      <button ion-button icon-left  (click)="goToEventDetail('')">
+        <ion-icon name="md-person-add"></ion-icon>Neu
+      </button>
+      
+    </ion-buttons>
+   
+  </ion-toolbar>
+</ion-footer>
